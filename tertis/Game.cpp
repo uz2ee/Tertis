@@ -101,24 +101,19 @@ void Game::drawPiece(int pX, int pY, int pTetroType, int pRotation)
 
             if (tetromino->getBlockType (pTetroType, pRotation, j, i) != 0)
 			{
-			    cout<<(GLfloat(mPixelsX + i * BLOCK_SIZE)/1000)<<"drawing tiles"<<endl;
+			    cout<<((mPixelsX + i * BLOCK_SIZE)/1000)<<"drawing tiles"<<endl;
 			    cout<<mPixelsY <<" Y tiles"<<endl;
 			    cout<<BLOCK_SIZE<<" BS tiles"<<endl;
 			    cout<<j <<" j tiles"<<endl;
 			    cout<<i <<" i tiles"<<endl;
-			    glColor3ub(251,240,208);
+			    //glColor3ub(251,240,208);
 				glRectf((GLfloat(mPixelsX + i * BLOCK_SIZE)/1000),
 					GLfloat((mPixelsY + j * BLOCK_SIZE)/1000),
-					GLfloat(((mPixelsX + i * BLOCK_SIZE) + BLOCK_SIZE - 1)/1000),
-					GLfloat(((mPixelsY + j * BLOCK_SIZE) + BLOCK_SIZE - 1))/1000);
+					GLfloat(((mPixelsX + i * BLOCK_SIZE) + BLOCK_SIZE - .1)/1000),
+					GLfloat(((mPixelsY + j * BLOCK_SIZE) + BLOCK_SIZE - .1))/1000);
 			}
         }
     }
-
-
-
-
-
 }
 
 void Game::drawBoard ()

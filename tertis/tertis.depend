@@ -250,7 +250,7 @@
 1606637314 c:\users\user\desktop\tertis\tertis\board.h
 	"Tile.h"
 
-1606640618 source:c:\users\user\desktop\tertis\tertis\game.cpp
+1606641269 source:c:\users\user\desktop\tertis\tertis\game.cpp
 	"game.h"
 	<stdlib.h>
 	<iostream>

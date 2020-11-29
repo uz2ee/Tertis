@@ -37,11 +37,11 @@ void display()
 
 
 
-    mGame.drawScene();
 
 
 
-    /*
+
+
 
 
     /// background
@@ -134,11 +134,6 @@ void display()
 		}
 	glEnd();
 
-	 Tile x;
-
-
-	cout<<x.red;
-
 
 
 
@@ -209,11 +204,11 @@ void display()
 
 
 
-    */
 
 
 
 
+    mGame.drawScene();
 
 
     glFlush();
