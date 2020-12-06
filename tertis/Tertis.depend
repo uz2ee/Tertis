@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1607286505 source:c:\users\user\desktop\tertis\tertis\main.cpp
+1607288402 source:c:\users\user\desktop\tertis\tertis\main.cpp
 	<iostream>
 	<string>
 	<windows.h>

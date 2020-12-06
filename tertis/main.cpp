@@ -236,20 +236,19 @@ void display()
         if (taken[i][j]){
                 float iix , iiy ;
 
-                if (i >= 10 ){
-                   iix =  (i-10)/10.0 ;
+                if (i>9){
+                    iix = (i - 10) / 10.0;
                 }
-                else
-                    iix = -i/10.0;
-                 if (j >= 10 ){
-                   iiy =  (j-10)/10.0 ;
+                else iix = -(10- i ) / 10.0 ;
+
+                  if (j>9){
+                    iiy = (j - 10) / 10.0;
                 }
-                else
-                    iiy = -j/10.0;
+                else iiy = -(10- j ) / 10.0 ;
 
 
-                cout <<"drawing " << iiy  <<" " <<iix <<endl;
-            draw_quad(  iiy, iix , 1);
+                cout <<"drawing " <<i <<" "<<iix <<" " <<  j <<" " <<iiy <<endl;
+            draw_quad(  iix, iiy , 1);
         }
 
     }
@@ -258,7 +257,7 @@ void display()
 
 
 
-    bottom_grass();
+    //bottom_grass();
     glFlush();
 
 
@@ -291,8 +290,8 @@ void SpecialInput(int key, int x, int y)
 
 
 int convert_to_axis(float var){
-    if (var< 0 ){
-        var *= -1;
+    if (var<=0 ){
+        var = 1+var;
     }
     else
         var+=1.0;
@@ -313,7 +312,7 @@ bool valid(float x , float y){
 
  cout<<ix <<" " <<iy<<"ix iy"<<endl;
 
-    if (taken[iy][ix]){
+    if (taken[ix][iy]){
              cout<<ix <<" " <<iy<<"ix ______ iy"<<endl;
         return false;
     }
@@ -352,13 +351,13 @@ void update(int x ){
         int ix = convert_to_axis(xpos);
     int iy = convert_to_axis(ypos);
 
-    taken[iy][ix] = true;
+    taken[ix][iy] = true;
     }
     }else {
     int ix = convert_to_axis(xpos);
     int iy = convert_to_axis(ypos);
 
-    taken[iy][ix] = true;
+    taken[ix][iy] = true;
     new_object();
     }
     cout<<ypos<<" "<<xpos<<" current ypos  xpos " <<endl ;
