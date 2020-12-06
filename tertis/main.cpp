@@ -11,38 +11,11 @@ using namespace std;
 #include <stdio.h>
 #define PI 3.14159265358979323846
 #include<math.h>
-#include "game.h"
 
-struct vertex
+float xpos = 0 , ypos = 1;
+
+void background_cloud()
 {
-	GLfloat x;
-	GLfloat y;
-};
-std::string key;
-
-int mScreenHeight;
-int screenWidth;
-
-Tile tetros;
-Board mBoard (&tetros, 880);
-
-Game mGame (&mBoard, &tetros,  880);
-
-
-void display()
-{
-    glClearColor(1.0f ,1.0f ,1.0f ,0.0f  );
-    glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-
-
-
-
-
-
-
 
     /// background
 
@@ -195,26 +168,112 @@ void display()
 		}
 	glEnd();
 
+}
+
+
+void bottom_grass(){
+
+    glBegin(GL_QUADS);
+            glColor3ub(98,147,38);
+            glVertex2f(-1 , -.9);
+            glVertex2f(-1 , -1);
+            glVertex2f(1 , -1);
+            glVertex2f(1 , -.9);
+    glEnd();
+
+}
+float move_right( float x ){
+ if (x <1.0 and x> -1.0)
+ {
+     x = x+ 0.1 ;
+ }
+ return x;
+}
+float move_left( float x ){
+ if (x <1.0 and x> -1.0)
+ {
+     x = x- 0.1 ;
+ }
+ return x;
+}
+void draw_quad(float x , float y , int color){
+
+    /// quad positions
+    float x1 , y1 , x2 ,y2 ;
+
+
+    x1 = x ; y1 = y ;
+    x2 = x + .1 ; y2 = y1 - .1 ;
+
+
+    glBegin(GL_QUADS);
+            glColor3ub(157,192,46);
+            glVertex2f(x1 , y1);
+            glVertex2f(x1,y2);
+            glVertex2f(x2,y2);
+            glVertex2f(x2 ,y1);
+    glEnd();
+
+}
+void display()
+{
+
+     ///dont touch
+    glClearColor(1.0f ,1.0f ,1.0f ,0.0f  );
+    glClear(GL_COLOR_BUFFER_BIT);
+
+
+    background_cloud();
+    draw_quad(xpos , ypos , 1);
 
 
 
-
-
-
-
-
-
-
-
-
-
-    mGame.drawScene();
-
-
+    bottom_grass();
     glFlush();
 
 
 }
+void SpecialInput(int key, int x, int y)
+{
+    switch(key)
+        {case GLUT_KEY_UP:
+
+            break;
+        case GLUT_KEY_DOWN:
+
+            break;
+        case GLUT_KEY_LEFT:
+            if (xpos >-1){
+                xpos = xpos - .1;
+            }
+
+            break;
+        case GLUT_KEY_RIGHT:
+            if (xpos <.9){
+                xpos = xpos + .1;
+            }
+
+            break;}
+    glutPostRedisplay();
+
+}
+
+bool valid_ypos(float y){
+
+    return true;
+}
+
+void update(int x ){
+
+    if (ypos>-.8 or valid(ypos)){
+        ypos-=.1;
+    }
+    cout<<ypos<<" "<<xpos<<" current ypos  xpos " <<endl ;
+glutPostRedisplay();
+
+glutTimerFunc(900, update , 0 );
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -222,9 +281,9 @@ int main(int argc, char *argv[])
     glutCreateWindow("Tertis");
     glutInitWindowSize(640,880);
     glutDisplayFunc(display);
+    glutSpecialFunc(SpecialInput);
+    glutTimerFunc(900, update , 0 );
 
-  //  glutIdleFunc(Idle);//glutIdleFunc sets the global idle callback to be func so a GLUT program can perform background processing tasks or continuous animation when window system events are not being received.
-  //  glutTimerFunc(900, update , 0 );
     glutMainLoop();
 
     return 0;
