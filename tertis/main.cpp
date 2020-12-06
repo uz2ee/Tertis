@@ -14,7 +14,7 @@ using namespace std;
 
 float xpos = 0 , ypos = 1;
 bool taken [30][30] ;
-int speed = 400;
+int speed = 800;
 
 void background_cloud()
 {
@@ -341,21 +341,20 @@ void update(int x ){
 
     print_matrix();
 
-    if (ypos>-.8 )
-    { if(valid(ypos, xpos))
+    if (ypos>-.80 )
     {
-        ypos-=.1;
-    }
 
+            ypos-=.1;
+
+
+    }
     else {
-        int ix = convert_to_axis(xpos);
-    int iy = convert_to_axis(ypos);
 
-    taken[ix][iy] = true;
-    }
-    }else {
+
     int ix = convert_to_axis(xpos);
     int iy = convert_to_axis(ypos);
+    cout<<"second"<<endl;
+        cout<<ix<<iy<<endl;
 
     taken[ix][iy] = true;
     new_object();
