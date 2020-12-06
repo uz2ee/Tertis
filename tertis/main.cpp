@@ -13,6 +13,8 @@ using namespace std;
 #include<math.h>
 
 float xpos = 0 , ypos = 1;
+bool taken [30][30] ;
+int speed = 400;
 
 void background_cloud()
 {
@@ -203,7 +205,7 @@ void draw_quad(float x , float y , int color){
 
 
     x1 = x ; y1 = y ;
-    x2 = x + .1 ; y2 = y1 - .1 ;
+    x2 = x + 0.1 ; y2 = y1 - 0.1 ;
 
 
     glBegin(GL_QUADS);
@@ -225,6 +227,34 @@ void display()
 
     background_cloud();
     draw_quad(xpos , ypos , 1);
+
+        for( int i = 1 ; i<20 ; i++){
+
+        for (int j = 1 ; j<20 ; j++ )
+    {
+       // cout<<taken[i][j];
+        if (taken[i][j]){
+                float iix , iiy ;
+
+                if (i >= 10 ){
+                   iix =  (i-10)/10.0 ;
+                }
+                else
+                    iix = -i/10.0;
+                 if (j >= 10 ){
+                   iiy =  (j-10)/10.0 ;
+                }
+                else
+                    iiy = -j/10.0;
+
+
+                cout <<"drawing " << iiy  <<" " <<iix <<endl;
+            draw_quad(  iiy, iix , 1);
+        }
+
+    }
+      cout<<endl;
+    }
 
 
 
@@ -258,20 +288,83 @@ void SpecialInput(int key, int x, int y)
 
 }
 
-bool valid_ypos(float y){
 
+
+int convert_to_axis(float var){
+    if (var< 0 ){
+        var *= -1;
+    }
+    else
+        var+=1.0;
+    return int(var*10);
+
+}
+
+void new_object()
+{
+    xpos= 0 ;
+    ypos = 1;
+}
+
+bool valid(float x , float y){
+
+    int ix = convert_to_axis(x);
+    int iy = convert_to_axis(y);
+
+ cout<<ix <<" " <<iy<<"ix iy"<<endl;
+
+    if (taken[iy][ix]){
+             cout<<ix <<" " <<iy<<"ix ______ iy"<<endl;
+        return false;
+    }
     return true;
+}
+void print_matrix()
+{
+    for( int i = 1 ; i<20 ; i++){
+
+        for (int j = 1 ; j<20 ; j++ )
+    {
+        cout<<taken[i][j];
+        }
+        cout<<endl;
+
+    }
+
+
+
+    cout <<endl;
+
+
 }
 
 void update(int x ){
 
-    if (ypos>-.8 or valid(ypos)){
+    print_matrix();
+
+    if (ypos>-.8 )
+    { if(valid(ypos, xpos))
+    {
         ypos-=.1;
+    }
+
+    else {
+        int ix = convert_to_axis(xpos);
+    int iy = convert_to_axis(ypos);
+
+    taken[iy][ix] = true;
+    }
+    }else {
+    int ix = convert_to_axis(xpos);
+    int iy = convert_to_axis(ypos);
+
+    taken[iy][ix] = true;
+    new_object();
     }
     cout<<ypos<<" "<<xpos<<" current ypos  xpos " <<endl ;
 glutPostRedisplay();
 
-glutTimerFunc(900, update , 0 );
+glutTimerFunc(speed, update , 0 );
 }
 
 
@@ -282,7 +375,7 @@ int main(int argc, char *argv[])
     glutInitWindowSize(640,880);
     glutDisplayFunc(display);
     glutSpecialFunc(SpecialInput);
-    glutTimerFunc(900, update , 0 );
+    glutTimerFunc(speed, update , 0 );
 
     glutMainLoop();
 
