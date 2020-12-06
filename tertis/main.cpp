@@ -228,9 +228,9 @@ void display()
     background_cloud();
     draw_quad(xpos , ypos , 1);
 
-        for( int i = 1 ; i<20 ; i++){
+        for( int i = 0 ; i<20 ; i++){
 
-        for (int j = 1 ; j<20 ; j++ )
+        for (int j = 0 ; j<20 ; j++ )
     {
        // cout<<taken[i][j];
         if (taken[i][j]){
@@ -257,7 +257,7 @@ void display()
 
 
 
-    //bottom_grass();
+    bottom_grass();
     glFlush();
 
 
@@ -266,9 +266,17 @@ void SpecialInput(int key, int x, int y)
 {
     switch(key)
         {case GLUT_KEY_UP:
+            if(speed>100)
+
+            speed -= 100;
+            cout<<"speed"<<speed<<endl;
 
             break;
         case GLUT_KEY_DOWN:
+             if(speed<3000)
+
+            speed += 100;
+            cout<<"speed"<<speed<<endl;
 
             break;
         case GLUT_KEY_LEFT:
@@ -291,10 +299,10 @@ void SpecialInput(int key, int x, int y)
 
 int convert_to_axis(float var){
     if (var<=0 ){
-        var = 1+var;
+        var = 1.00003+var;
     }
     else
-        var+=1.0;
+        var+=1.00003;
     return int(var*10);
 
 }
@@ -344,22 +352,38 @@ void update(int x ){
     if (ypos>-.80 )
     {
 
-            ypos-=.1;
+            ///if next not empty
+
+            float next_ypos = ypos-.1 ;
+            int nix = convert_to_axis(xpos);
+            int niy = convert_to_axis(next_ypos);
+
+            if ( taken[nix][niy])
+            {
+                    int ix = convert_to_axis(xpos);
+                    int iy = convert_to_axis(ypos);
+                    taken[ix][iy] = true;
+                    new_object();
+            }
+            else
+            {
+                    ypos-=.1;
+            }
 
 
     }
     else {
+            cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
+            int ix = convert_to_axis(xpos);
+            int iy = convert_to_axis(ypos);
+            cout<<"second"<<endl;
+            cout<<ix<<" "<<iy<<endl;
 
-    int ix = convert_to_axis(xpos);
-    int iy = convert_to_axis(ypos);
-    cout<<"second"<<endl;
-        cout<<ix<<iy<<endl;
-
-    taken[ix][iy] = true;
-    new_object();
+            taken[ix][iy] = true;
+            new_object();
     }
-    cout<<ypos<<" "<<xpos<<" current ypos  xpos " <<endl ;
+
 glutPostRedisplay();
 
 glutTimerFunc(speed, update , 0 );
