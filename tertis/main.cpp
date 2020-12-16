@@ -242,7 +242,7 @@ void display()
     background_cloud();
 
     glTranslatef(-1,1,0);
-    draw_quad(xpos , ypos , 1);
+    draw_quad(xpos , ypos , type);
     cout<<xpos<<" "<<ypos<<endl;
 
         for( int i = 0 ; i<20 ; i++){
@@ -251,6 +251,8 @@ void display()
     {
        // cout<<taken[i][j];
         if (taken[i][j]){
+
+                cout<<i/10.0 << j/10.0<<endl;
             draw_quad(  i/10.0, j/10.0 , 1);
         }
 
@@ -315,8 +317,8 @@ int convert_to_axis(float var){
 
 void new_object()
 {
-    xpos= 0 ;
-    ypos = 1;
+    xpos= 1 ;
+    ypos = 0;
     type= 0;
   //  cout<<type<<endl;
 }
