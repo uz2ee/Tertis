@@ -12,7 +12,7 @@ using namespace std;
 #define PI 3.14159265358979323846
 #include<math.h>
 
-float xpos = 0 , ypos = 1;
+float xpos = 1 , ypos = 0, type = 0;
 bool taken [30][30] ;
 int speed = 800;
 
@@ -198,7 +198,7 @@ float move_left( float x ){
  }
  return x;
 }
-void draw_quad(float x , float y , int color){
+void draw_quad(float x , float y , int type){
 
     /// quad positions
     float x1 , y1 , x2 ,y2 ;
@@ -209,12 +209,26 @@ void draw_quad(float x , float y , int color){
 
 
     glBegin(GL_QUADS);
+            glColor3ub(20,192,46);
+            glVertex2f(x1 , y1);
+            glVertex2f(x1,y2);
+            glVertex2f(x2,y2);
+            glVertex2f(x2 ,y1);
+    glEnd();
+
+    if (type==1){
+        x= x+.1;
+        x1 = x ; y1 = y ;
+    x2 = x + 0.1 ; y2 = y1 - 0.1 ;
+             glBegin(GL_QUADS);
             glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
             glVertex2f(x1,y2);
             glVertex2f(x2,y2);
             glVertex2f(x2 ,y1);
     glEnd();
+
+    }
 
 }
 void display()
@@ -226,7 +240,10 @@ void display()
 
 
     background_cloud();
+
+    glTranslatef(-1,1,0);
     draw_quad(xpos , ypos , 1);
+    cout<<xpos<<" "<<ypos<<endl;
 
         for( int i = 0 ; i<20 ; i++){
 
@@ -234,26 +251,14 @@ void display()
     {
        // cout<<taken[i][j];
         if (taken[i][j]){
-                float iix , iiy ;
-
-                if (i>9){
-                    iix = (i - 10) / 10.0;
-                }
-                else iix = -(10- i ) / 10.0 ;
-
-                  if (j>9){
-                    iiy = (j - 10) / 10.0;
-                }
-                else iiy = -(10- j ) / 10.0 ;
-
-
-                cout <<"drawing " <<i <<" "<<iix <<" " <<  j <<" " <<iiy <<endl;
-            draw_quad(  iix, iiy , 1);
+            draw_quad(  i/10.0, j/10.0 , 1);
         }
 
     }
       cout<<endl;
     }
+
+    glLoadIdentity();
 
 
 
@@ -280,13 +285,13 @@ void SpecialInput(int key, int x, int y)
 
             break;
         case GLUT_KEY_LEFT:
-            if (xpos >-1){
+            if (xpos >0){
                 xpos = xpos - .1;
             }
 
             break;
         case GLUT_KEY_RIGHT:
-            if (xpos <.9){
+            if (xpos <1.9){
                 xpos = xpos + .1;
             }
 
@@ -298,6 +303,7 @@ void SpecialInput(int key, int x, int y)
 
 
 int convert_to_axis(float var){
+    cout<<"calling";
     if (var<=0 ){
         var = 1.00003+var;
     }
@@ -311,77 +317,107 @@ void new_object()
 {
     xpos= 0 ;
     ypos = 1;
+    type= 0;
+  //  cout<<type<<endl;
 }
 
-bool valid(float x , float y){
 
-    int ix = convert_to_axis(x);
-    int iy = convert_to_axis(y);
-
- cout<<ix <<" " <<iy<<"ix iy"<<endl;
-
-    if (taken[ix][iy]){
-             cout<<ix <<" " <<iy<<"ix ______ iy"<<endl;
-        return false;
-    }
-    return true;
-}
 void print_matrix()
 {
-    for( int i = 1 ; i<20 ; i++){
+    for( int i = 1 ; i<21 ; i++){
 
-        for (int j = 1 ; j<20 ; j++ )
+        for (int j = 1 ; j<21 ; j++ )
     {
         cout<<taken[i][j];
         }
         cout<<endl;
 
     }
-
-
-
     cout <<endl;
-
 
 }
 
 void update(int x ){
 
-    print_matrix();
 
-    if (ypos>-.80 )
+    print_matrix();
+     cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
+
+
+
+
+    if (ypos>-1.80 )
     {
+
+        if(type==0){ /// _
 
             ///if next not empty
 
-            float next_ypos = ypos-.1 ;
-            int nix = convert_to_axis(xpos);
-            int niy = convert_to_axis(next_ypos);
+                    float next_ypos = ypos-.1 ;
+                    int nix = int(xpos*10);
+                    int niy = int(next_ypos);
 
-            if ( taken[nix][niy])
-            {
-                    int ix = convert_to_axis(xpos);
-                    int iy = convert_to_axis(ypos);
-                    taken[ix][iy] = true;
-                    new_object();
-            }
-            else
-            {
-                    ypos-=.1;
-            }
+                    if ( taken[nix][niy])
+                    {
+                            int ix = int(xpos*10);
+                            int iy = int(ypos*10);
+                            taken[ix][iy] = true;
+                            new_object();
+                    }
+                    else
+                    {
+                            ypos-=.1;
+                    }
 
+        }
 
+        else if (type == 1 ){
+                    float next_ypos = ypos-.1 ;
+                    int nix1 = int(xpos*10);
+                    int nix2 = int((xpos+.1000001)*10);
+                    int niy = int(next_ypos);
+
+                    if ( taken[nix1][niy] or taken[nix2][niy])
+                    {
+                            int ix1 = int(xpos*10);
+                            int iy = int(ypos*10);
+                            int ix2 = int((xpos+.1000001)*10);
+                            taken[ix1][iy] = true;
+                            taken[ix2][iy] = true;
+
+                            cout<<" ix1 " <<ix1 <<" ix2 "<<ix2<<endl;
+
+                            new_object();
+                    }
+                    else
+                    {
+                            ypos-=.1;
+                    }
+
+        }
     }
     else {
-            cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
-            int ix = convert_to_axis(xpos);
-            int iy = convert_to_axis(ypos);
-            cout<<"second"<<endl;
-            cout<<ix<<" "<<iy<<endl;
+              if(type==0){  /// _
+                            cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
-            taken[ix][iy] = true;
-            new_object();
+                            int ix = int(xpos*10);
+                            int iy = int(ypos*10);
+                            cout<<"second"<<endl;
+                            cout<<ix<<" "<<iy<<endl;
+
+                            taken[ix][iy] = true;
+                            new_object();
+            }
+            else if (type==1){    ///    __
+                            int ix1 = int(xpos*10);
+                            int iy =int(ypos*10);
+                            int ix2 = int((xpos+.1000001)*10);
+                            taken[ix1][iy] = true;
+                            taken[ix2][iy] = true;
+
+                            new_object();
+            }
     }
 
 glutPostRedisplay();
