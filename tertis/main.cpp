@@ -185,14 +185,14 @@ void bottom_grass(){
 
 }
 float move_right( float x ){
- if (x <1.0 and x> -1.0)
+ if (x <1.0 and x> -1.0 and type!=1)
  {
      x = x+ 0.1 ;
  }
  return x;
 }
 float move_left( float x ){
- if (x <1.0 and x> -1.0)
+ if (x <1.0 and x> -1.0 )
  {
      x = x- 0.1 ;
  }
@@ -380,8 +380,10 @@ void update(int x ){
                     if ( taken[nix1][-niy] or taken[nix2][-niy])
                     {
 
-                            taken[nix1][-niy] = true;
-                            taken[nix2][-niy] = true;
+                        int enpos = int(ypos*10.0);
+
+                            taken[nix1][-enpos] = true;
+                            taken[nix2][-enpos] = true;
 
                             cout<<" nix1 " <<nix1 <<" nix2 "<<nix2<<endl;
 
@@ -413,11 +415,12 @@ void update(int x ){
                             new_object();
             }
             else if (type==1){    ///    __
-                            int ix1 = int(xpos*10);
-                            int iy =int(ypos*10);
-                            int ix2 = int((xpos+.1000001)*10);
-                            taken[ix1][-iy] = true;
-                            taken[ix2][-iy] = true;
+                            int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0) - (xpos<0.0999);
+                            int iy = int(ypos*10.0);
+
+                            taken[nix1][-iy] = true;
+                            taken[nix2][-iy] = true;
 
                             new_object();
             }
