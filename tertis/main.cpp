@@ -354,12 +354,12 @@ void update(int x ){
             ///if next not empty
 
                     float next_ypos = ypos-0.10000000000 ;
-                    int nix = int(xpos*10.0) + (xpos<1.0) - (xpos<0.1);
+                    int nix = int(xpos*10.0) + (xpos<1.0) - (xpos<0.0999);
                     int niy = int(next_ypos*10.0) ;
 
                     if ( taken[nix][-niy])
                     {
-                            int ix = int(xpos*10.000) + (xpos<1.0);
+                            int ix = int(xpos*10.000) + (xpos<1.0) - (xpos<0.0999); /// for zero < 009 for < 0.9 rounding <1.o
                             int iy = int(ypos*10.000);
 
                             cout <<ix << " adding enw object "<<iy <<endl;
@@ -406,7 +406,7 @@ void update(int x ){
 
 
 
-                            int ix = int(xpos*10.0)+  (xpos<1.0) - (xpos<0.1);
+                            int ix = int(xpos*10.0)+  (xpos<1.0) - (xpos<0.099); /// for zero < 009 for < 0.9 rounding <1.o
                             int iy = int(ypos*10.0);
                             cout<<"second"<<endl;
 
