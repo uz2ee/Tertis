@@ -237,3 +237,13 @@
 1341006774 c:\program files (x86)\codeblocks\mingw\include\math.h
 	<_mingw.h>
 
+1609350084 source:d:\projects\tertis\tertis\main.cpp
+	<iostream>
+	<string>
+	<windows.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+

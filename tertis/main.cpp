@@ -252,17 +252,15 @@ void display()
        // cout<<taken[i][j];
         if (taken[i][j]){
 
-                cout<<i/10.0 << j/10.0<<endl;
-            draw_quad(  i/10.0, j/10.0 , 1);
+              //  cout<<i/10.0 << j/10.0<<endl;
+            draw_quad(  float(i)/10.0, float(-j)/10.0 , 0); // type = 0  because it will print only one tile
         }
 
     }
-      cout<<endl;
+
     }
 
     glLoadIdentity();
-
-
 
     bottom_grass();
     glFlush();
@@ -326,11 +324,11 @@ void new_object()
 
 void print_matrix()
 {
-    for( int i = 1 ; i<21 ; i++){
+    for( int i = 0 ; i<21 ; i++){
 
-        for (int j = 1 ; j<21 ; j++ )
+        for (int j = 0 ; j<21 ; j++ )
     {
-        cout<<taken[i][j];
+        cout<<taken[j][i];
         }
         cout<<endl;
 
@@ -355,15 +353,17 @@ void update(int x ){
 
             ///if next not empty
 
-                    float next_ypos = ypos-.1 ;
-                    int nix = int(xpos*10);
-                    int niy = int(next_ypos);
+                    float next_ypos = ypos-0.10000000000 ;
+                    int nix = int(xpos*10.0) + (xpos<1.0) - (xpos<0.1);
+                    int niy = int(next_ypos*10.0) ;
 
-                    if ( taken[nix][niy])
+                    if ( taken[nix][-niy])
                     {
-                            int ix = int(xpos*10);
-                            int iy = int(ypos*10);
-                            taken[ix][iy] = true;
+                            int ix = int(xpos*10.000) + (xpos<1.0);
+                            int iy = int(ypos*10.000);
+
+                            cout <<ix << " adding enw object "<<iy <<endl;
+                            taken[ix][-iy] = true;
                             new_object();
                     }
                     else
@@ -375,17 +375,17 @@ void update(int x ){
 
         else if (type == 1 ){
                     float next_ypos = ypos-.1 ;
-                    int nix1 = int(xpos*10);
-                    int nix2 = int((xpos+.1000001)*10);
-                    int niy = int(next_ypos);
+                    int nix1 = int(xpos*10) + (xpos<1.0) ;
+                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0);
+                    int niy = int(next_ypos*10.0);
 
-                    if ( taken[nix1][niy] or taken[nix2][niy])
+                    if ( taken[nix1][-niy] or taken[nix2][-niy])
                     {
-                            int ix1 = int(xpos*10);
-                            int iy = int(ypos*10);
+                            int ix1 = int(xpos*10) + (xpos<1.0);
+                            int iy = int(ypos*10)  ;
                             int ix2 = int((xpos+.1000001)*10);
-                            taken[ix1][iy] = true;
-                            taken[ix2][iy] = true;
+                            taken[ix1][-iy] = true;
+                            taken[ix2][-iy] = true;
 
                             cout<<" ix1 " <<ix1 <<" ix2 "<<ix2<<endl;
 
@@ -403,20 +403,25 @@ void update(int x ){
               if(type==0){  /// _
                             cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
-                            int ix = int(xpos*10);
-                            int iy = int(ypos*10);
-                            cout<<"second"<<endl;
-                            cout<<ix<<" "<<iy<<endl;
 
-                            taken[ix][iy] = true;
+
+
+                            int ix = int(xpos*10.0)+  (xpos<1.0) - (xpos<0.1);
+                            int iy = int(ypos*10.0);
+                            cout<<"second"<<endl;
+
+
+                            cout <<ix << " adding enw object "<<iy <<endl;
+
+                            taken[ix][-iy] = true;
                             new_object();
             }
             else if (type==1){    ///    __
                             int ix1 = int(xpos*10);
                             int iy =int(ypos*10);
                             int ix2 = int((xpos+.1000001)*10);
-                            taken[ix1][iy] = true;
-                            taken[ix2][iy] = true;
+                            taken[ix1][-iy] = true;
+                            taken[ix2][-iy] = true;
 
                             new_object();
             }
@@ -427,7 +432,6 @@ glutPostRedisplay();
 glutTimerFunc(speed, update , 0 );
 }
 
-
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
@@ -436,7 +440,6 @@ int main(int argc, char *argv[])
     glutDisplayFunc(display);
     glutSpecialFunc(SpecialInput);
     glutTimerFunc(speed, update , 0 );
-
     glutMainLoop();
 
     return 0;
