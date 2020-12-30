@@ -317,8 +317,9 @@ void new_object()
 {
     xpos= 1 ;
     ypos = 0;
-    type= 0;
-  //  cout<<type<<endl;
+    type= rand()%2;
+
+    cout<<type<<endl;
 }
 
 
@@ -342,9 +343,6 @@ void update(int x ){
 
     print_matrix();
      cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
-
-
-
 
     if (ypos>-1.80 )
     {
@@ -375,19 +373,17 @@ void update(int x ){
 
         else if (type == 1 ){
                     float next_ypos = ypos-.1 ;
-                    int nix1 = int(xpos*10) + (xpos<1.0) ;
-                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0);
+                    int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0) - (xpos<0.0999);
                     int niy = int(next_ypos*10.0);
 
                     if ( taken[nix1][-niy] or taken[nix2][-niy])
                     {
-                            int ix1 = int(xpos*10) + (xpos<1.0);
-                            int iy = int(ypos*10)  ;
-                            int ix2 = int((xpos+.1000001)*10);
-                            taken[ix1][-iy] = true;
-                            taken[ix2][-iy] = true;
 
-                            cout<<" ix1 " <<ix1 <<" ix2 "<<ix2<<endl;
+                            taken[nix1][-niy] = true;
+                            taken[nix2][-niy] = true;
+
+                            cout<<" nix1 " <<nix1 <<" nix2 "<<nix2<<endl;
 
                             new_object();
                     }
