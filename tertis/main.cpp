@@ -16,6 +16,8 @@ float xpos = 1 , ypos = 0, type = 3;
 bool taken [30][30] ;
 int speed = 800;
 bool game_over = false ;
+int score = 0 ;
+int final_score = 0;
 void background_cloud()
 {
 
@@ -320,6 +322,7 @@ void SpecialInput(int key, int x, int y)
 
             break;
         case GLUT_KEY_DOWN:
+             type = rand()%5;
              if(speed<3000)
 
             speed += 100;
@@ -358,27 +361,35 @@ void SpecialInput(int key, int x, int y)
 
 
 
-int convert_to_axis(float var){
-    cout<<"calling";
-    if (var<=0 ){
-        var = 1.00003+var;
-    }
-    else
-        var+=1.00003;
-    return int(var*10);
 
-}
 
 void new_object()
 {
-    if (!game_over){
+
     xpos= 1 ;
     ypos = 0;
     type= rand()%5;
 
-
-
 }
+
+void delete_row(int i){
+
+    cout << "deleting I "<<i<<endl;
+    for (int ex = 0 ; ex< 21; ex++  )
+            {
+                taken[ex][i] = false ;
+            }
+            for (int bq = 0 ; bq < 21 ; bq++ )
+
+            {
+                for (int p = i ;p >0 ; p-- )
+                {
+                   // cout<<"q p" <<q <<p <<"      " ;
+                    taken[bq][p] = taken[bq][p-1];
+                }
+                cout <<endl;
+            }
+
 }
 
 
@@ -389,42 +400,59 @@ void print_matrix()
         for (int j = 0 ; j<21 ; j++ )
     {
         //if (taken[j][i])
-        cout<<taken[j][i] ;//<< " j" <<  j << i << " i" ;
+     //   cout<< taken[j][i]<< j<< i <<" _ "  ;
         }
-        cout<<endl;
+      //  cout<<endl;
 
     }
 
-    if (game_over) cout<<"Game over !";
+    int cnt = 0 ;
+
+
+
+    if (game_over){ cout<<"Game over \n Final score !" <<final_score ;
     cout <<endl;
+
+    }
 
     for( int j = 0 ; j < 21 ;j ++ )
     {
         if (taken[j][0]){
             game_over = true;
+            final_score = score ;
         }
     }
 
-    /// updating score and table
-    for( int j = 0 ; j < 21 ;j ++ ){
-            bool filled = false ;
-        for( int i = 0 ; i < 21 ;i ++ )
+    for( int i = 0 ; i < 21 ;i ++ ){
+
+        int freq = 0 ;
+
+        for( int j = 0 ; j < 21 ;j ++ )
         {
-            if (taken[i][j]== true){
+            freq = taken[j][i]  + freq;
         }
-    }
 
+      //  cout<< i <<" rows " << freq <<endl;
 
-
-
-
+        if (freq >=20 )
+        {
+           // cout<<"deleting " ;
+            delete_row(i);
+            cnt++;
+        }
 }
+
+score+= cnt * 10 ;
+
+cout<<"Score : " <<score<<endl;
+}
+
 
 void update(int x ){
 
 
     print_matrix();
-     cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
+  //   cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
     if (ypos>-1.80 )
     {
@@ -452,7 +480,7 @@ void update(int x ){
                     }
 
         }
-        if(type==3){ /// _
+        else if(type==3){ /// _
 
             ///if next not empty
 
@@ -574,7 +602,7 @@ void update(int x ){
                             taken[ix][-iy] = true;
                             new_object();
             }
-            if(type==3){  /// _
+            else if(type==3){  /// _
                             cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
 
 
