@@ -12,10 +12,10 @@ using namespace std;
 #define PI 3.14159265358979323846
 #include<math.h>
 
-float xpos = 1 , ypos = 0, type = 0;
+float xpos = 1 , ypos = 0, type = 3;
 bool taken [30][30] ;
 int speed = 800;
-
+bool game_over = false ;
 void background_cloud()
 {
 
@@ -184,20 +184,7 @@ void bottom_grass(){
     glEnd();
 
 }
-float move_right( float x ){
- if (x <1.0 and x> -1.0 and type!=1)
- {
-     x = x+ 0.1 ;
- }
- return x;
-}
-float move_left( float x ){
- if (x <1.0 and x> -1.0 )
- {
-     x = x- 0.1 ;
- }
- return x;
-}
+
 void draw_quad(float x , float y , int type){
 
     /// quad positions
@@ -209,17 +196,33 @@ void draw_quad(float x , float y , int type){
 
 
     glBegin(GL_QUADS);
+    if (type==99)
             glColor3ub(20,192,46);
+            else             glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
             glVertex2f(x1,y2);
             glVertex2f(x2,y2);
             glVertex2f(x2 ,y1);
     glEnd();
 
+        if (type==3){
+
+       glBegin(GL_QUADS);
+         glColor3ub(157,192,46);
+            glVertex2f(x1 , y1+.1);
+            glVertex2f(x1,y2+.1);
+            glVertex2f(x2,y2+.1);
+            glVertex2f(x2 ,y1+.1);
+    glEnd();
+
+    }
+
+
+
     if (type==1){
         x= x+.1;
         x1 = x ; y1 = y ;
-    x2 = x + 0.1 ; y2 = y1 - 0.1 ;
+    x2 = x + 0.1 ; y2 = y1 - 0.1 ; ///extre x2 at .1 width distance
              glBegin(GL_QUADS);
             glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
@@ -228,6 +231,45 @@ void draw_quad(float x , float y , int type){
             glVertex2f(x2 ,y1);
     glEnd();
 
+    }
+    if (type==2){
+        x= x+.1;
+        x1 = x ; y1 = y ;
+    x2 = x + 0.2 ; y2 = y1 - 0.1 ;   /// x2 = .2 width distance
+             glBegin(GL_QUADS);
+            glColor3ub(157,192,46);
+            glVertex2f(x1 , y1);
+            glVertex2f(x1,y2);
+            glVertex2f(x2,y2);
+            glVertex2f(x2 ,y1);
+    glEnd();
+
+    }
+    if (type==4){
+        float ax= x+.1;
+        x1 = ax ; y1 = y  ;
+    x2 = ax + 0.1 ; y2 = y1 + 0.1 ; ///extre x2 at .1 width distance
+             glBegin(GL_QUADS);
+            glColor3ub(157,192,46);
+            glVertex2f(x1 , y1);
+            glVertex2f(x1,y2);
+            glVertex2f(x2,y2);
+            glVertex2f(x2 ,y1);
+    glEnd();
+     x= x+.1;
+        x1 = x ; y1 = y ;
+    x2 = x + 0.1 ; y2 = y1 - 0.1 ; ///extre x2 at .1 width distance
+             glBegin(GL_QUADS);
+            glColor3ub(157,192,46);
+            glVertex2f(x1 , y1);
+            glVertex2f(x1,y2);
+            glVertex2f(x2,y2);
+            glVertex2f(x2 ,y1);
+    glEnd();
+
+
+
+    cout <<x1 <<" " << y1 <<" " <<" " <<x2 <<" ----  " <<y2;
     }
 
 }
@@ -253,7 +295,7 @@ void display()
         if (taken[i][j]){
 
               //  cout<<i/10.0 << j/10.0<<endl;
-            draw_quad(  float(i)/10.0, float(-j)/10.0 , 0); // type = 0  because it will print only one tile
+            draw_quad(  float(i)/10.0, float(-j)/10.0 , 99); // type = 99   it will print only one tile
         }
 
     }
@@ -291,10 +333,24 @@ void SpecialInput(int key, int x, int y)
 
             break;
         case GLUT_KEY_RIGHT:
-            if (xpos <1.9){
+            if (xpos <1.9 and type==0){
                 xpos = xpos + .1;
             }
-
+            if (xpos <1.9 and type==3){
+                xpos = xpos + .1;
+            }
+            if (xpos <1.8 and type==1)
+            {
+                  xpos = xpos + .1;
+            }
+            if (xpos <1.7 and type==2)
+            {
+                  xpos = xpos + .1;
+            }
+             if (xpos <1.8 and type==4)
+            {
+                  xpos = xpos + .1;
+            }
             break;}
     glutPostRedisplay();
 
@@ -315,12 +371,14 @@ int convert_to_axis(float var){
 
 void new_object()
 {
+    if (!game_over){
     xpos= 1 ;
     ypos = 0;
-    type= rand()%2;
-    type = 1;
+    type= rand()%5;
 
-    cout<<type<<endl;
+
+
+}
 }
 
 
@@ -330,12 +388,35 @@ void print_matrix()
 
         for (int j = 0 ; j<21 ; j++ )
     {
-        cout<<taken[j][i];
+        //if (taken[j][i])
+        cout<<taken[j][i] ;//<< " j" <<  j << i << " i" ;
         }
         cout<<endl;
 
     }
+
+    if (game_over) cout<<"Game over !";
     cout <<endl;
+
+    for( int j = 0 ; j < 21 ;j ++ )
+    {
+        if (taken[j][0]){
+            game_over = true;
+        }
+    }
+
+    /// updating score and table
+    for( int j = 0 ; j < 21 ;j ++ ){
+            bool filled = false ;
+        for( int i = 0 ; i < 21 ;i ++ )
+        {
+            if (taken[i][j]== true){
+        }
+    }
+
+
+
+
 
 }
 
@@ -371,6 +452,30 @@ void update(int x ){
                     }
 
         }
+        if(type==3){ /// _
+
+            ///if next not empty
+
+                    float next_ypos = ypos-0.10000000000 ;
+                    int nix = int(xpos*10.0) + (xpos<1.0) - (xpos<0.0999);
+                    int niy = int(next_ypos*10.0) ;
+
+                    if ( taken[nix][-niy])
+                    {
+                            int ix = int(xpos*10.000) + (xpos<1.0) - (xpos<0.0999); /// for zero < 009 for < 0.9 rounding <1.o
+                            int iy = int(ypos*10.000);
+
+                            cout <<ix << " adding enw object "<<iy <<endl;
+                            taken[ix][-iy] = true;
+                            taken[ix][-iy - 1] = true;
+                            new_object();
+                    }
+                    else
+                    {
+                            ypos-=.1;
+                    }
+
+        }
 
         else if (type == 1 ){
                     float next_ypos = ypos-.1 ;
@@ -385,6 +490,60 @@ void update(int x ){
 
                             taken[nix1][-enpos] = true;
                             taken[nix2][-enpos] = true;
+
+                            cout<<" nix1 " <<nix1<<" yopos" <<enpos<<endl <<" nix2 "<<nix2<<endl;
+
+                            new_object();
+                    }
+                    else
+                    {
+                            ypos-=.1;
+                    }
+
+        }
+
+                else if (type == 2 ){
+                    float next_ypos = ypos-.1 ;
+                    int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = nix1+1;
+                    int nix3 = nix1+2;
+                    int niy = int(next_ypos*10.0);
+
+                    if ( taken[nix1][-niy] or taken[nix2][-niy] or taken[nix3][-niy])
+                    {
+
+                        int enpos = int(ypos*10.0);
+
+                            taken[nix1][-enpos] = true;
+                            taken[nix2][-enpos] = true;
+                            taken[nix3][-enpos] = true;
+
+                            cout<<" nix1 " <<nix1<<" yopos" <<enpos<<endl <<" nix2 "<<nix2<<endl;
+
+                            new_object();
+                    }
+                    else
+                    {
+                            ypos-=.1;
+                    }
+
+        }
+
+        else if (type == 4 ){
+                    float next_ypos = ypos-.1 ;
+                    int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = nix1+1;
+                    int niy = int(next_ypos*10.0);
+
+                    if ( taken[nix1][-niy] or taken[nix2][-niy])
+                    {
+
+                        int enpos = int(ypos*10.0);
+
+                            taken[nix1][-enpos] = true;
+                            taken[nix2][-enpos] = true;
+                            taken[nix2][-enpos-1] = true;
+
 
                             cout<<" nix1 " <<nix1<<" yopos" <<enpos<<endl <<" nix2 "<<nix2<<endl;
 
@@ -415,13 +574,54 @@ void update(int x ){
                             taken[ix][-iy] = true;
                             new_object();
             }
-            else if (type==1){    ///    __
+            if(type==3){  /// _
+                            cout<<xpos<<" "<<ypos<<" current ypos  xpos " <<endl ;
+
+
+
+
+                            int ix = int(xpos*10.0)+  (xpos<1.0) - (xpos<0.099); /// for zero < 009 for < 0.9 rounding <1.o
+                            int iy = int(ypos*10.0);
+                            cout<<"second"<<endl;
+
+
+                            cout <<ix << " adding enw object "<<iy <<endl;
+
+                            taken[ix][-iy] = true;
+                            taken[ix][-iy - 1] = true;
+                            new_object();
+            }
+            else if (type==1){    ///
                             int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
                     int nix2 = nix1+1;
                             int iy = int(ypos*10.0);
 
                             taken[nix1][-iy] = true;
                             taken[nix2][-iy] = true;
+
+                            cout<<" nix1 " <<nix1<<" yopos" <<iy<<endl <<" nix2 "<<nix2<<endl;
+
+                            new_object();
+            }
+            else if (type==2){    ///    __
+                            int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = nix1+1;
+                    int nix3 = nix2+1;
+                            int iy = int(ypos*10.0);
+                            taken[nix1][-iy] = true;
+                            taken[nix2][-iy] = true;
+                            taken[nix3][-iy] = true;
+                            cout<<" nix1 " <<nix1<<" yopos" <<iy<<endl <<" nix2 "<<nix2<<endl;
+                            new_object();
+            }
+            else if (type==4){    ///    __
+                            int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
+                    int nix2 = nix1+1;
+                            int iy = int(ypos*10.0);
+
+                            taken[nix1][-iy] = true;
+                            taken[nix2][-iy] = true;
+                            taken[nix2][-iy - 1] = true;
 
                             cout<<" nix1 " <<nix1<<" yopos" <<iy<<endl <<" nix2 "<<nix2<<endl;
 
