@@ -318,6 +318,7 @@ void new_object()
     xpos= 1 ;
     ypos = 0;
     type= rand()%2;
+    type = 1;
 
     cout<<type<<endl;
 }
@@ -374,7 +375,7 @@ void update(int x ){
         else if (type == 1 ){
                     float next_ypos = ypos-.1 ;
                     int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
-                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0) - (xpos<0.0999);
+                    int nix2 = nix1+1;
                     int niy = int(next_ypos*10.0);
 
                     if ( taken[nix1][-niy] or taken[nix2][-niy])
@@ -385,7 +386,7 @@ void update(int x ){
                             taken[nix1][-enpos] = true;
                             taken[nix2][-enpos] = true;
 
-                            cout<<" nix1 " <<nix1 <<" nix2 "<<nix2<<endl;
+                            cout<<" nix1 " <<nix1<<" yopos" <<enpos<<endl <<" nix2 "<<nix2<<endl;
 
                             new_object();
                     }
@@ -416,11 +417,13 @@ void update(int x ){
             }
             else if (type==1){    ///    __
                             int nix1 = int(xpos*10) + (xpos<1.0) - (xpos<0.0999) ;
-                    int nix2 = int((xpos+.1000001)*10) + (xpos<1.0) - (xpos<0.0999);
+                    int nix2 = nix1+1;
                             int iy = int(ypos*10.0);
 
                             taken[nix1][-iy] = true;
                             taken[nix2][-iy] = true;
+
+                            cout<<" nix1 " <<nix1<<" yopos" <<iy<<endl <<" nix2 "<<nix2<<endl;
 
                             new_object();
             }
