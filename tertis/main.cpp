@@ -1,3 +1,6 @@
+/// https://github.com/uz2ee/Tertis
+
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -36,6 +39,169 @@ string toStr(int x)
 		x /= 10;
 	}
 	return s;
+}
+
+void cristmas(){
+
+
+    ///gluOrtho2D(-1,1,-1,1.5);
+//    ///THE UPPER STAR START
+//    glBegin(GL_TRIANGLES);
+//    glColor3ub(255,0,0);
+//    glVertex2f(-.03,1.06);glVertex2f(-.07,1.00);glVertex2f(.02,1.00);
+//    glVertex2f(-.07,1.00);glVertex2f(-.13,1.00);glVertex2f(-.08,.97);
+//    glVertex2f(-.08,.97);glVertex2f(-.15,.9);glVertex2f(-.03,.95);
+//    glVertex2f(-.03,.95);glVertex2f(.1,.9);glVertex2f(.03,.97);
+//    glVertex2f(.02,1);glVertex2f(.07,1);glVertex2f(.03,.97);
+//    glVertex2f(-.07,1);glVertex2f(-.08,.97);glVertex2f(-.03,.95);
+//    glVertex2f(.02,1);glVertex2f(.03,.97);glVertex2f(-.03,.95);
+//    glVertex2f(-.07,1);glVertex2f(-.03,.95);glVertex2f(.02,1);
+//    glEnd();
+    ///The upper Star END
+    ///TREE FIRST SECTION START
+    glBegin(GL_TRIANGLES);
+     glColor3ub(236,216,163);
+    glVertex2f(-.03,.95),glVertex2f(-.14,.74),glVertex2f(-.08,.76);
+    glVertex2f(-.03,.95),glVertex2f(-.08,.76),glVertex2f(-.06,.74);
+    glVertex2f(-.03,.95),glVertex2f(-.06,.74),glVertex2f(-.02,.76);
+    glVertex2f(-.03,.95),glVertex2f(-.02,.76),glVertex2f(.02,.74);
+    glVertex2f(-.03,.95),glVertex2f(.02,.74),glVertex2f(.04,.76);
+    glVertex2f(-.03,.95),glVertex2f(.04,.76),glVertex2f(.1,.74);
+    glEnd();
+    ///TREE FIRST SECTION END
+    ///First tree section border
+    glBegin(GL_QUADS);
+    glColor3ub(0,0,0);
+    glVertex2f(-0.14012,0.74012),glVertex2f(-0.14015,0.73809),glVertex2f(-0.0802,0.75794),glVertex2f(-0.07855,0.76064);
+    glVertex2f(-0.0802,0.75794),glVertex2f(-0.07855,0.76064),glVertex2f(-0.06095,0.73865),glVertex2f(-0.06102,0.73656);
+    glVertex2f(-0.06095,0.73865),glVertex2f(-0.06102,0.73656),glVertex2f(-0.02282,0.75874),glVertex2f(-0.02284,0.76064);
+    glVertex2f(-0.02282,0.75874),glVertex2f(-0.02284,0.76064),glVertex2f(0.01674,0.74012),glVertex2f(0.01669,0.73848);
+    glVertex2f(0.01674,0.74012),glVertex2f(0.01669,0.73848),glVertex2f(0.04482,0.75743),glVertex2f(0.0446,0.75918);
+    glVertex2f(0.04482,0.75743),glVertex2f(0.0446,0.75918),glVertex2f(0.09737,0.74305),glVertex2f(0.0975,0.74187);
+    ///First tree section border complete
+    glEnd();
+    ///Second tree section start
+    glBegin(GL_TRIANGLES);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.14015,0.73809),glVertex2f(-0.3,0.6),glVertex2f(-0.16825,0.67228);
+    glVertex2f(-0.14015,0.73809),glVertex2f(-0.16825,0.67228),glVertex2f(-0.14315,0.69956);
+    glVertex2f(-0.16825,0.67228),glVertex2f(-0.14315,0.69956),glVertex2f(-0.18057,0.60051);
+    glVertex2f(-0.14315,0.69956),glVertex2f(-0.18057,0.60051),glVertex2f(-0.14047,0.67046);
+    glVertex2f(-0.14315,0.69956),glVertex2f(-0.14047,0.67046),glVertex2f(-0.12551,0.69999);
+    glVertex2f(-0.14315,0.69956),glVertex2f(-0.12551,0.69999),glVertex2f(-0.14015,0.73809);
+    glVertex2f(-0.14015,0.73809),glVertex2f(-0.0802,0.75794),glVertex2f(-0.12551,0.69999);
+    glVertex2f(-0.0802,0.75794),glVertex2f(-0.12551,0.69999),glVertex2f(-0.08,0.7);
+    glVertex2f(-0.12551,0.69999),glVertex2f(-0.1,0.6),glVertex2f(-0.08,0.7);
+    glVertex2f(-0.0802,0.75794),glVertex2f(-0.08,0.7),glVertex2f(-0.06102,0.73656);
+    glVertex2f(-0.06102,0.73656),glVertex2f(-0.08,0.7),glVertex2f(-0.03468,0.70577);
+    glVertex2f(-0.08,0.7),glVertex2f(-0.05,0.6),glVertex2f(-0.04774,0.66996);
+    glVertex2f(-0.08,0.7),glVertex2f(-0.04774,0.66996),glVertex2f(-0.03468,0.70577);
+    glVertex2f(-0.06102,0.73656),glVertex2f(-0.02282,0.75874),glVertex2f(-0.03468,0.70577);
+    glVertex2f(-0.02282,0.75874),glVertex2f(-0.03468,0.70577),glVertex2f(0,0.71434);
+    glVertex2f(-0.03468,0.70577),glVertex2f(0,0.71434),glVertex2f(-0.01878,0.5987);
+    glVertex2f(-0.02282,0.75874),glVertex2f(0.01669,0.73848),glVertex2f(-0.01878,0.5987);
+    glVertex2f(0.01669,0.73848),glVertex2f(-0.01878,0.5987),glVertex2f(0.04168,0.71704);
+   glVertex2f(-0.01878,0.5987),glVertex2f(0.04168,0.71704),glVertex2f(0.04482,0.75743);
+   glVertex2f(0,0.71434),glVertex2f(0.04168,0.71704),glVertex2f(0.03193,0.60172);
+   glVertex2f(0.01669,0.73848),glVertex2f(0,0.71434),glVertex2f(0.04168,0.71704);
+   glVertex2f(0.04482,0.75743),glVertex2f(0.06937,0.71882),glVertex2f(0.04168,0.71704);
+   glVertex2f(0.04482,0.75743),glVertex2f(0.04168,0.71704);glVertex2f(0.01669,0.73848);
+   glVertex2f(0.04168,0.71704),glVertex2f(0.06937,0.71882),glVertex2f(0.08989,0.60112);
+   glVertex2f(0.04482,0.75743),glVertex2f(0.06937,0.71882),glVertex2f(0.09249,0.71957);
+   glVertex2f(0.04482,0.75743),glVertex2f(0.09249,0.71957),glVertex2f(0.0975,0.74187);
+   glVertex2f(0.06937,0.71882),glVertex2f(0.09249,0.71957),glVertex2f(0.15,0.6);
+   glVertex2f(0.09249,0.71957),glVertex2f(0.0975,0.74187),glVertex2f(0.25,0.6);
+    glEnd();
+    ///Second Section Finish
+    ///Second Section Border Start
+    glBegin(GL_QUADS);
+    glColor3ub(0,0,0);
+    glVertex2f(-0.31064,0.59712),glVertex2f(-0.31088,0.59417),glVertex2f(-0.1609,0.67382),glVertex2f(-0.14315,0.69956);
+    ///glVertex2f(-0.1609,0.67382),glVertex2f(-0.14315,0.69956),glVertex2f(-0.18057,0.60051),glVertex2f(-0.18227,0.59261);
+    glVertex2f(-0.18057,0.60051),glVertex2f(-0.18227,0.59261),glVertex2f(-0.12667,0.69267),glVertex2f(-0.12551,0.69999);
+    glVertex2f(-0.12667,0.69267),glVertex2f(-0.12551,0.69999),glVertex2f(-0.1,0.6),glVertex2f(-0.09972,0.59407);
+    glVertex2f(-0.1,0.6),glVertex2f(-0.09972,0.59407),glVertex2f(-0.07963,0.69137),glVertex2f(-0.08,0.7);
+    glVertex2f(-0.07963,0.69137),glVertex2f(-0.08,0.7),glVertex2f(-0.05,0.6),glVertex2f(-0.04891,0.59289);
+    glVertex2f(-0.05,0.6),glVertex2f(-0.04891,0.59289),glVertex2f(-0.04517,0.66911),glVertex2f(-0.04774,0.66996);
+    glVertex2f(-0.04517,0.66911),glVertex2f(-0.04774,0.66996),glVertex2f(-0.03468,0.70577),glVertex2f(-0.03536,0.69796);
+    glVertex2f(-0.03468,0.70577),glVertex2f(-0.03536,0.69796),glVertex2f(-0.01874,0.58825),glVertex2f(-0.01878,0.5987);
+    glVertex2f(-0.01874,0.58825),glVertex2f(-0.01878,0.5987),glVertex2f(0,0.71434),glVertex2f(0,.71);
+    glVertex2f(0,0.71434),glVertex2f(0,.71),glVertex2f(0.03293,0.59143),glVertex2f(0.03193,0.60172);
+    glVertex2f(0.03293,0.59143),glVertex2f(0.03193,0.60172),glVertex2f(0.04168,0.71704),glVertex2f(0.0434,0.70684);
+    glVertex2f(0.04168,0.71704),glVertex2f(0.0434,0.70684),glVertex2f(0.09325,0.58938),glVertex2f(0.08989,0.60112);
+    glVertex2f(0.09325,0.58938),glVertex2f(0.08989,0.60112),glVertex2f(0.06937,0.71882),glVertex2f(0.07527,0.70479);
+    glVertex2f(0.06937,0.71882),glVertex2f(0.07527,0.70479),glVertex2f(0.15722,0.58756),glVertex2f(0.15,0.6);
+    glVertex2f(0.15722,0.58756),glVertex2f(0.15,0.6),glVertex2f(0.09249,0.71957),glVertex2f(0.10122,0.70889);
+    glVertex2f(0.09249,0.71957),glVertex2f(0.10122,0.70889),glVertex2f(0.26869,0.58116),glVertex2f(0.25,0.6);
+    glEnd();
+    ///Second Section Border Done
+    ///Third Section Start
+    glBegin(GL_TRIANGLES);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.1609,0.67382),glVertex2f(-0.31088,0.59417),glVertex2f(-0.18227,0.59261);
+    glVertex2f(-0.31088,0.59417),glVertex2f(-0.18227,0.59261),glVertex2f(-0.2,0.4);
+    glVertex2f(-0.31088,0.59417),glVertex2f(-0.2,0.4),glVertex2f(-0.3,0.4);
+    glVertex2f(-0.31088,0.59417),glVertex2f(-0.3,0.4),glVertex2f(-0.48186,0.34679);
+    glVertex2f(-0.3,0.4),glVertex2f(-0.2,0.4),glVertex2f(-0.3,0.3);
+    glVertex2f(-0.2,0.4),glVertex2f(-0.14144,0.27022),glVertex2f(-0.1,0.4);
+    glVertex2f(-0.2,0.4),glVertex2f(-0.1,0.4),glVertex2f(-0.18227,0.59261);
+    glEnd();
+    glBegin(GL_QUADS);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.12667,0.69267),glVertex2f(-0.18227,0.59261),glVertex2f(-0.1,0.4),glVertex2f(-0.09972,0.59407);
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.09972,0.59407),glVertex2f(-0.1,0.4),glVertex2f(-0.00972,0.2656),glVertex2f(0.06192,0.40079),glVertex2f(-0.04891,0.59289);
+    glEnd();
+    glBegin(GL_TRIANGLES);
+       glColor3ub(236,216,163);
+    glVertex2f(-0.09972,0.59407),glVertex2f(-0.04891,0.59289),glVertex2f(-0.07963,0.69137);
+    glEnd();
+    glBegin(GL_QUADS);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.04891,0.59289),glVertex2f(-0.01874,0.58825),glVertex2f(-0.03536,0.69796),glVertex2f(-0.04517,0.66911);
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3ub(236,216,163);
+    glVertex2f(-0.04891,0.59289),glVertex2f(0.06192,0.40079),glVertex2f(0.19134,0.27831),glVertex2f(0.17054,0.39963),glVertex2f(0.15722,0.58756);
+    glVertex2f(0.07527,0.70479),glVertex2f(0.09325,0.58938),glVertex2f(0.0434,0.70684),glVertex2f(0.03293,0.59143),glVertex2f(0,.71),glVertex2f(-0.01874,0.58825);
+    glVertex2f(-0.03536,0.69796),glVertex2f(-0.04517,0.66911),glVertex2f(-0.04891,0.59289);
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3ub(236,216,163);
+    glVertex2f(0.15722,0.58756),glVertex2f(0.17054,0.39963),glVertex2f(0.35888,0.29102),glVertex2f(0.2676,0.40194),glVertex2f(0.45709,0.36497);
+    glVertex2f(0.26869,0.58116),glVertex2f(0.10122,0.70889);
+    glEnd();
+    ///Third Section END
+    ///Third Section Border start
+    glBegin(GL_QUADS);
+    glColor3ub(0,0,0);
+    glVertex2f(-0.48186,0.34679),glVertex2f(-0.49375,0.32295),glVertex2f(-0.31933,0.37662),glVertex2f(-0.3,0.4);
+    glVertex2f(-0.31933,0.37662),glVertex2f(-0.3,0.4),glVertex2f(-0.3,0.3),glVertex2f(-0.31323,0.26196);
+    glVertex2f(-0.3,0.3),glVertex2f(-0.31323,0.26196),glVertex2f(-0.20711,0.3693),glVertex2f(-0.2,0.4);
+    glVertex2f(-0.20711,0.3693),glVertex2f(-0.2,0.4),glVertex2f(-0.14144,0.27022),glVertex2f(-0.14124,0.23757);
+    glVertex2f(-0.14144,0.27022),glVertex2f(-0.14124,0.23757),glVertex2f(-0.09611,0.35954),glVertex2f(-0.1,0.4);
+    glVertex2f(-0.09611,0.35954),glVertex2f(-0.1,0.4),glVertex2f(-0.00972,0.2656),glVertex2f(0,.24);
+    glVertex2f(-0.00972,0.2656),glVertex2f(0,.24),glVertex2f(0.06734,0.3693),glVertex2f(0.06192,0.40079);
+    glVertex2f(0.06734,0.3693),glVertex2f(0.06192,0.40079),glVertex2f(0.19134,0.27831),glVertex2f(0.21692,0.23869);
+    glVertex2f(0.19134,0.27831),glVertex2f(0.21692,0.23869),glVertex2f(0.19542,0.35345),glVertex2f(0.17054,0.39963);
+    glVertex2f(0.19542,0.35345),glVertex2f(0.17054,0.39963),glVertex2f(0.35888,0.29102),glVertex2f(0.39668,0.25708);
+    glVertex2f(0.35888,0.29102),glVertex2f(0.39668,0.25708),glVertex2f(0.30886,0.37662),glVertex2f(0.2676,0.40194);
+    glVertex2f(0.30886,0.37662),glVertex2f(0.2676,0.40194),glVertex2f(0.45709,0.36497),glVertex2f(0.48938,0.34125);
+    glEnd();
+    ///THIRD SECTION BORDER COMPLETE
+    ///Last Section
+
+    /*
+    glBegin(GL_POLYGON);
+    glColor3ub(109,45,5);
+    glVertex2f(-0.05,0.3),glVertex2f(-0.05,0.0),glVertex2f(0.04,0.0),glVertex2f(0.04,0.32);
+    glEnd();
+
+    */
+    ///Last section END
+
 }
 
 
@@ -1361,22 +1527,6 @@ glTranslatef(-0.26,-.6,0);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 void display()
 {
@@ -1388,6 +1538,8 @@ void display()
 
     background_cloud();
     draw_tree();
+
+  ///  cristmas(); by anik
 
 
 
