@@ -187,6 +187,81 @@ void bottom_grass(){
 
 }
 
+
+void game_over_label(){
+        ///Printing G
+    glScalef(.5,.5,0);
+    glLineWidth(4);
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(-.6-.15,.4),glVertex2d(-.8-.15,.4);
+    glVertex2d(-.8-.15,.4),glVertex2d(-.8-.15,0);
+    glVertex2d(-.8-.15,0),glVertex2d(-.6-.15,0);
+    glVertex2d(-.6-.15,0),glVertex2d(-.6-.15,.2);
+    glVertex2d(-.6-.15,.2),glVertex2d(-.7-.15,.2);
+    glEnd();
+    ///printing A
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(-.46-.15,.4),glVertex2d(-.54-.15,0);
+    glVertex2d(-.46-.15,.4),glVertex2d(-.38-.15,0);
+    glVertex2d(-.5-.15,0.2),glVertex2d(-.42-.15,.2);
+    glEnd();
+    ///printing M
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(-.32-.15,.4),glVertex2d(-.32-.15,0);
+    glVertex2d(-.32-.15,.4),glVertex2d(-.22-.15,.2);
+    glVertex2d(-.12-.15,0.4),glVertex2d(-.22-.15,.2);
+    glVertex2d(-.12-.15,0.4),glVertex2d(-.12-.15,.0);
+    glEnd();
+    ///printing E
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(.1-.15,.4),glVertex2d(-.06-.15,.4);
+    glVertex2d(-.06-.15,.2),glVertex2d(-.06-.15,.4);
+    glVertex2d(-.06-.15,.2),glVertex2d(.1-.15,.2);
+    glVertex2d(-.06-.15,.2),glVertex2d(-.06-.15,0);
+    glVertex2d(-.06-.15,0),glVertex2d(.1-.15,0);
+    glEnd();
+    ///Printing O
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(.28-.15,.4),glVertex2d(.52-.15,.4);
+    glVertex2d(.52-.15,.4),glVertex2d(.52-.15,0);
+    glVertex2d(.52-.15,0),glVertex2d(.28-.15,0);
+    glVertex2d(.28-.15,0),glVertex2d(.28-.15,.4);
+    glEnd();
+    ///Printing V
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(.56-.15,.4),glVertex2d(.65-.15,0);
+    glVertex2d(.65-.15,0),glVertex2d(.74-.15,.4);
+    glEnd();
+    ///Printing E
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(.1+.86-.15,.4),glVertex2d(-.06+.86-.15,.4);
+    glVertex2d(-.06+.86-.15,.2),glVertex2d(-.06+.86-.15,.4);
+    glVertex2d(-.06+.86-.15,.2),glVertex2d(.1+.86-.15,.2);
+    glVertex2d(-.06+.86-.15,.2),glVertex2d(-.06+.86-.15,0);
+    glVertex2d(-.06+.86-.15,0),glVertex2d(.1+.86-.15,0);
+    glEnd();
+    ///printing R
+    glBegin(GL_LINES);
+    glColor3ub(255,0,0);
+    glVertex2d(1.05-.06-.15,.4),glVertex2d(1.2-.06-.15,.4);
+    glVertex2d(1.2-.06-.15,.2),glVertex2d(1.2-.06-.15,.4);
+    glVertex2d(1.2-.06-.15,.2),glVertex2d(1.05-.06-.15,.2);
+    glVertex2d(1.05-.06-.15,.4),glVertex2d(1.05-.06-.15,.2);
+    glVertex2d(1.05-.06-.15,.2),glVertex2d(1.05-.06-.15,0);
+    glVertex2d(1.05-.06-.15,.2),glVertex2d(1.2-.06-.15,0);
+    glEnd();
+
+     glLoadIdentity();
+
+}
+
 void draw_quad(float x , float y , int type){
 
     /// quad positions
@@ -285,9 +360,11 @@ void display()
 
     background_cloud();
 
+
+
     glTranslatef(-1,1,0);
     draw_quad(xpos , ypos , type);
-    cout<<xpos<<" "<<ypos<<endl;
+   // cout<<xpos<<" "<<ypos<<endl;
 
         for( int i = 0 ; i<20 ; i++){
 
@@ -307,6 +384,11 @@ void display()
     glLoadIdentity();
 
     bottom_grass();
+
+    if (game_over){
+         game_over_label();
+    }
+
     glFlush();
 
 
@@ -387,7 +469,7 @@ void delete_row(int i){
                    // cout<<"q p" <<q <<p <<"      " ;
                     taken[bq][p] = taken[bq][p-1];
                 }
-                cout <<endl;
+              //  cout <<endl;
             }
 
 }
