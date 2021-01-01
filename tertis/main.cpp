@@ -52,7 +52,7 @@ void pauseSound()
 void scoreText()
 {
     glLoadIdentity();
-    glTranslatef(-0.7f,0.0f,0.0f); // S
+    glTranslatef(-0.8f,0.8f,0.0f); // S
     glBegin(GL_LINES);
     glColor3ub(colorRed,colorGreen,colorBlue);
     glVertex2f(0.1,0.1);
@@ -66,10 +66,9 @@ void scoreText()
     glVertex2f(0.0,0.0);
     glVertex2f(0.1,0.0);
     glEnd();
-    glLoadIdentity();
 
     glLoadIdentity();
-    glTranslatef(-0.575f,0.0f,0.0f); // S
+    glTranslatef(-0.675f,0.8f,0.0f); // C
     glBegin(GL_LINES);
     glColor3ub(colorRed,colorGreen,colorBlue);
     glVertex2f(0.1,0.1);
@@ -79,10 +78,9 @@ void scoreText()
     glVertex2f(0.0,0.0);
     glVertex2f(0.1,0.0);
     glEnd();
-    glLoadIdentity();
 
     glLoadIdentity();
-    glTranslatef(-0.45f,0.0f,0.0f); // O
+    glTranslatef(-0.55f,0.8f,0.0f); // O
     glBegin(GL_LINES);
     glColor3ub(colorRed,colorGreen,colorBlue);
     glVertex2f(0.1,0.1);
@@ -94,10 +92,9 @@ void scoreText()
     glVertex2f(0.1,0.0);
     glVertex2f(0.1,0.1);
     glEnd();
-    glLoadIdentity();
 
     glLoadIdentity();
-    glTranslatef(-0.325f,0.0f,0.0f); // O
+    glTranslatef(-0.425f,0.8f,0.0f); // R
     glBegin(GL_LINES);
     glColor3ub(colorRed,colorGreen,colorBlue);
     glVertex2f(0.1,0.1);
@@ -111,11 +108,10 @@ void scoreText()
     glVertex2f(0.0,0.05);
     glVertex2f(0.1,0.05);
     glEnd();
-    glLoadIdentity();
 
 
     glLoadIdentity();
-    glTranslatef(-0.19f,0.0f,0.0f); // E
+    glTranslatef(-0.300f,0.8f,0.0f); // E
     glBegin(GL_LINES);
     glColor3ub(colorRed,colorGreen,colorBlue);
     glVertex2f(0.1,0.1);
@@ -127,29 +123,27 @@ void scoreText()
     glVertex2f(0.1,0.05);
     glVertex2f(0.0,0.05);
     glEnd();
-    glLoadIdentity();
 
     glLoadIdentity();
-    glTranslatef(-0.05f,0.09f,0.0f); // Upper colon
+    glTranslatef(-0.17f,0.885f,0.0f); // Upper colon
     glPointSize(2);
     glBegin(GL_POINTS);
     glVertex2f(0.0,0.0);
     glEnd();
-    glLoadIdentity();
 
     glLoadIdentity();
-    glTranslatef(-0.05f,0.01f,0.0f); // Lower colon
+    glTranslatef(-0.170f,0.815f,0.0f); // Lower colon
     glPointSize(2);
     glBegin(GL_POINTS);
     glVertex2f(0.0,0.0);
     glEnd();
-    glLoadIdentity();
 
 }
 
 void digitZero()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -161,21 +155,21 @@ void digitZero()
         glVertex2f(0.1,0.0);
         glVertex2f(0.1,0.1);
         glEnd();
-        glLoadIdentity();
 }
 void digitOne()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.0);
         glVertex2f(0.1,0.1);
         glEnd();
-        glLoadIdentity();
 }
 void digitTwo()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -189,11 +183,11 @@ void digitTwo()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
 }
 void digitThree()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -205,11 +199,11 @@ void digitThree()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
 }
 void digitFour()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -219,11 +213,11 @@ void digitFour()
         glVertex2f(0.1,0.1);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
 }
 void digitFive()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -237,11 +231,11 @@ void digitFive()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
 }
 void digitSix()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -255,11 +249,11 @@ void digitSix()
         glVertex2f(0.1,0.05);
         glVertex2f(0.0,0.05);
         glEnd();
-        glLoadIdentity();
 }
 void digitSeven()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -267,11 +261,11 @@ void digitSeven()
         glVertex2f(0.1,0.1);
         glVertex2f(0.05,0.0);
         glEnd();
-        glLoadIdentity();
 }
 void digitEight()
 {
-        glLoadIdentity();
+            glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -285,11 +279,11 @@ void digitEight()
         glVertex2f(0.0,0.05);
         glVertex2f(0.1,0.05);
         glEnd();
-        glLoadIdentity();
 }
 void digitNine()
 {
         glLoadIdentity();
+        glTranslatef(-0.10f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -303,13 +297,12 @@ void digitNine()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
 }
 
 void digitSecondZero()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -321,23 +314,22 @@ void digitSecondZero()
         glVertex2f(0.1,0.0);
         glVertex2f(0.1,0.1);
         glEnd();
-        glLoadIdentity();
 }
 void digitSecondOne()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.0);
         glVertex2f(0.1,0.1);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondTwo()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -351,12 +343,12 @@ void digitSecondTwo()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondThree()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -368,12 +360,12 @@ void digitSecondThree()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondFour()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -383,12 +375,12 @@ void digitSecondFour()
         glVertex2f(0.1,0.1);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondFive()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -402,12 +394,12 @@ void digitSecondFive()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondSix()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -421,12 +413,12 @@ void digitSecondSix()
         glVertex2f(0.1,0.05);
         glVertex2f(0.0,0.05);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondSeven()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -434,12 +426,12 @@ void digitSecondSeven()
         glVertex2f(0.1,0.1);
         glVertex2f(0.05,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondEight()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -453,12 +445,12 @@ void digitSecondEight()
         glVertex2f(0.0,0.05);
         glVertex2f(0.1,0.05);
         glEnd();
-        glLoadIdentity();
+
 }
 void digitSecondNine()
 {
-        glLoadIdentity();
-        glTranslatef(0.15f,0.0f,0.0f);
+            glLoadIdentity();
+        glTranslatef(0.04f,0.805f,0.0f);
         glBegin(GL_LINES);
         glColor3ub(colorRed,colorGreen,colorBlue);
         glVertex2f(0.1,0.1);
@@ -472,8 +464,9 @@ void digitSecondNine()
         glVertex2f(0.0,0.0);
         glVertex2f(0.1,0.0);
         glEnd();
-        glLoadIdentity();
+
 }
+
 
 void background_cloud()
 {
@@ -1172,7 +1165,11 @@ void display()
     }
     else
     {
-                 /*      scoreText(); // for print "SCORE"
+
+         glLoadIdentity();
+
+
+                       scoreText(); // for print "SCORE"
 
     string score = toStr(escore);
     if(score.size()==1)
@@ -1215,13 +1212,13 @@ void display()
         else if(second=='8') digitSecondEight();
         else if(second=='9') digitSecondNine();
     }
-    */
     }
+
+     glLoadIdentity();
 
 
 
     glFlush();
-
 
 }
 void SpecialInput(int key, int x, int y)
