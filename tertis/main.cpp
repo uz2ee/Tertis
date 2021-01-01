@@ -644,6 +644,316 @@ void bottom_grass(){
 
 }
 
+void press_s_to_start(){
+ glBegin(GL_LINES);
+    glColor3ub(255, 0, 0);
+    glVertex2f(-0.82f, 0.0f);
+    glVertex2f(-0.82f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.82f, 0.1f);
+    glVertex2f(-0.9f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.9f, 0.1f);
+    glVertex2f(-0.9, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.9, 0.0f);
+    glVertex2f(-0.82f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.9, 0.0f);
+    glVertex2f(-0.9f, -0.1f);
+    glEnd();
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.7, 0.0f);
+    glVertex2f(-0.7f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.7, 0.1f);
+    glVertex2f(-0.78f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.78, 0.1f);
+    glVertex2f(-0.78f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.78, 0.0f);
+    glVertex2f(-0.7f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.78, 0.0f);
+    glVertex2f(-0.7f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.78, 0.0f);
+    glVertex2f(-0.78f, -0.1f);
+    glEnd();
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.58f, 0.1f);
+    glVertex2f(-0.66f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.66f, 0.1f);
+    glVertex2f(-0.66f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.66f, 0.0f);
+    glVertex2f(-0.58f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.66f, -0.1f);
+    glVertex2f(-0.58f, -0.1f);
+    glEnd();
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.46f, 0.1f);
+    glVertex2f(-0.54f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.54f, 0.1f);
+    glVertex2f(-0.54f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.54f, 0.0f);
+    glVertex2f(-0.46f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.46f, 0.0f);
+    glVertex2f(-0.46f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.46f, -0.1f);
+    glVertex2f(-0.54f, -0.1f);
+    glEnd();
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.34f, 0.1f);
+    glVertex2f(-0.42f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.42f, 0.1f);
+    glVertex2f(-0.42f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.42f, 0.0f);
+    glVertex2f(-0.34f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.34f, 0.0f);
+    glVertex2f(-0.34f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.34f, -0.1f);
+    glVertex2f(-0.42f, -0.1f);
+    glEnd();
+
+
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.16f, 0.1f);
+    glVertex2f(-0.24f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.24f, 0.1f);
+    glVertex2f(-0.24f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.24f, 0.0f);
+    glVertex2f(-0.16f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.16f, 0.0f);
+    glVertex2f(-0.16f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.16f, -0.1f);
+    glVertex2f(-0.24f, -0.1f);
+    glEnd();
+
+
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.02f, 0.1f);
+    glVertex2f(-0.06f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(-0.02f, -0.1f);
+    glVertex2f(-0.02f, 0.1f);
+    glEnd();
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.12f, -0.1f);
+    glVertex2f(0.12f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.12f, 0.1f);
+    glVertex2f(0.06f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.06f, 0.1f);
+    glVertex2f(0.06f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.06f, -0.1f);
+    glVertex2f(0.12f, -0.1f);
+    glEnd();
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.3f, 0.1f);
+    glVertex2f(0.22f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.22f, 0.1f);
+    glVertex2f(0.22f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.22f, 0.0f);
+    glVertex2f(0.3f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.3f, 0.0f);
+    glVertex2f(0.3f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.3f, -0.1f);
+    glVertex2f(0.22f, -0.1f);
+    glEnd();
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.42f, 0.1f);
+    glVertex2f(0.34f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.38f, 0.1f);
+    glVertex2f(0.38f, -0.1f);
+    glEnd();
+
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.54f, -0.1f);
+    glVertex2f(0.5f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.48f, 0.0f);
+    glVertex2f(0.52f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.5f, 0.1f);
+    glVertex2f(0.46f, -0.1f);
+    glEnd();
+
+
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.66f, 0.0f);
+    glVertex2f(0.66f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.66f, 0.1f);
+    glVertex2f(0.58f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.58f, 0.1f);
+    glVertex2f(0.58f, -0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.58f, 0.0f);
+    glVertex2f(0.66f, 0.0f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.58f, 0.0f);
+    glVertex2f(0.66f, -0.1f);
+    glEnd();
+
+
+
+
+
+    glBegin(GL_LINES);
+    glVertex2f(0.78f, 0.1f);
+    glVertex2f(0.7f, 0.1f);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2f(0.74f, 0.1f);
+    glVertex2f(0.74f, -0.1f);
+    glEnd();
+
+}
+
 
 void game_over_label(){
         ///Printing G
@@ -843,6 +1153,8 @@ void display()
 
     bottom_grass();
 
+
+
     if (playing) {
         playSound();
         playing = false;
@@ -855,11 +1167,12 @@ void display()
 
     if (game_over ){
          game_over_label();
+         press_s_to_start();
 
     }
     else
     {
-                       scoreText(); // for print "SCORE"
+                 /*      scoreText(); // for print "SCORE"
 
     string score = toStr(escore);
     if(score.size()==1)
@@ -902,6 +1215,7 @@ void display()
         else if(second=='8') digitSecondEight();
         else if(second=='9') digitSecondNine();
     }
+    */
     }
 
 
@@ -1042,7 +1356,7 @@ void print_matrix()
         }
 }
 
-escore+= cnt *5 ;
+escore+= cnt  ;
 
 
 cout<<"Score : " <<escore<<endl;
@@ -1262,6 +1576,23 @@ glutPostRedisplay();
 
 glutTimerFunc(speed, update , 0 );
 }
+void reset(){
+    for( int i = 0 ; i<21 ; i++){
+
+        for (int j = 0 ; j<21 ; j++ )
+    {
+       taken[j][i] = false ;
+       escore = 0 ;
+       final_score = 0 ;
+       speed = 1200 ;
+       xpos = 1 ;
+        ypos = 0;
+         type = 3;
+         game_over = false ;
+    }
+
+}
+}
 
 void handleKeypress(unsigned char key, int x, int y)
 {
@@ -1279,6 +1610,13 @@ void handleKeypress(unsigned char key, int x, int y)
                     playSound();
                 }
                 break;
+         case 'r':
+             reset();
+             break;
+
+        case 's':
+             reset();
+             break;
 	}
 }
 
