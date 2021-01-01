@@ -11,13 +11,470 @@ using namespace std;
 #include <stdio.h>
 #define PI 3.14159265358979323846
 #include<math.h>
+#include <bits/stdc++.h>
 
 float xpos = 1 , ypos = 0, type = 3;
 bool taken [30][30] ;
-int speed = 800;
+int speed = 1200;
 bool game_over = false ;
-int score = 0 ;
+int escore = 0 ;
 int final_score = 0;
+
+const int colorRed = 255;
+const int colorGreen = 0;
+const int colorBlue = 0;
+bool startMusic = true;
+bool playing = true ;
+
+string toStr(int x)
+{
+    string s = "";
+	if (x == 0) return "0";
+	while(x > 0)
+	{
+		s = (char)('0' + (x % 10)) + s;
+		x /= 10;
+	}
+	return s;
+}
+
+
+void playSound()
+{
+    PlaySound("a.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+}
+
+void pauseSound()
+{
+    PlaySound(NULL, NULL, SND_ASYNC|SND_FILENAME);
+}
+
+void scoreText()
+{
+    glLoadIdentity();
+    glTranslatef(-0.7f,0.0f,0.0f); // S
+    glBegin(GL_LINES);
+    glColor3ub(colorRed,colorGreen,colorBlue);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.05);
+    glVertex2f(0.0,0.05);
+    glVertex2f(0.1,0.05);
+    glVertex2f(0.1,0.05);
+    glVertex2f(0.1,0.0);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.1,0.0);
+    glEnd();
+    glLoadIdentity();
+
+    glLoadIdentity();
+    glTranslatef(-0.575f,0.0f,0.0f); // S
+    glBegin(GL_LINES);
+    glColor3ub(colorRed,colorGreen,colorBlue);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.1,0.0);
+    glEnd();
+    glLoadIdentity();
+
+    glLoadIdentity();
+    glTranslatef(-0.45f,0.0f,0.0f); // O
+    glBegin(GL_LINES);
+    glColor3ub(colorRed,colorGreen,colorBlue);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.1,0.0);
+    glVertex2f(0.1,0.0);
+    glVertex2f(0.1,0.1);
+    glEnd();
+    glLoadIdentity();
+
+    glLoadIdentity();
+    glTranslatef(-0.325f,0.0f,0.0f); // O
+    glBegin(GL_LINES);
+    glColor3ub(colorRed,colorGreen,colorBlue);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.0,0.05);
+    glVertex2f(0.1,0.0);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.1,0.05);
+    glVertex2f(0.0,0.05);
+    glVertex2f(0.1,0.05);
+    glEnd();
+    glLoadIdentity();
+
+
+    glLoadIdentity();
+    glTranslatef(-0.19f,0.0f,0.0f); // E
+    glBegin(GL_LINES);
+    glColor3ub(colorRed,colorGreen,colorBlue);
+    glVertex2f(0.1,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.1);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.0,0.0);
+    glVertex2f(0.1,0.0);
+    glVertex2f(0.1,0.05);
+    glVertex2f(0.0,0.05);
+    glEnd();
+    glLoadIdentity();
+
+    glLoadIdentity();
+    glTranslatef(-0.05f,0.09f,0.0f); // Upper colon
+    glPointSize(2);
+    glBegin(GL_POINTS);
+    glVertex2f(0.0,0.0);
+    glEnd();
+    glLoadIdentity();
+
+    glLoadIdentity();
+    glTranslatef(-0.05f,0.01f,0.0f); // Lower colon
+    glPointSize(2);
+    glBegin(GL_POINTS);
+    glVertex2f(0.0,0.0);
+    glEnd();
+    glLoadIdentity();
+
+}
+
+void digitZero()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glEnd();
+        glLoadIdentity();
+}
+void digitOne()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glEnd();
+        glLoadIdentity();
+}
+void digitTwo()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.00);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitThree()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitFour()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitFive()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSix()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSeven()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.05,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitEight()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glEnd();
+        glLoadIdentity();
+}
+void digitNine()
+{
+        glLoadIdentity();
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+
+void digitSecondZero()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondOne()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondTwo()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.00);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondThree()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondFour()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondFive()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondSix()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.05);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondSeven()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.05,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondEight()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glEnd();
+        glLoadIdentity();
+}
+void digitSecondNine()
+{
+        glLoadIdentity();
+        glTranslatef(0.15f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3ub(colorRed,colorGreen,colorBlue);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.0);
+        glVertex2f(0.1,0.1);
+        glVertex2f(0.0,0.05);
+        glVertex2f(0.1,0.05);
+        glVertex2f(0.0,0.0);
+        glVertex2f(0.1,0.0);
+        glEnd();
+        glLoadIdentity();
+}
+
 void background_cloud()
 {
 
@@ -191,7 +648,8 @@ void bottom_grass(){
 void game_over_label(){
         ///Printing G
     glScalef(.5,.5,0);
-    glLineWidth(4);
+    glTranslatef(0.0f,0.8f,0.0f);
+    glLineWidth(3);
     glBegin(GL_LINES);
     glColor3ub(255,0,0);
     glVertex2d(-.6-.15,.4),glVertex2d(-.8-.15,.4);
@@ -346,7 +804,7 @@ void draw_quad(float x , float y , int type){
 
 
 
-    cout <<x1 <<" " << y1 <<" " <<" " <<x2 <<" ----  " <<y2;
+    //cout <<x1 <<" " << y1 <<" " <<" " <<x2 <<" ----  " <<y2;
     }
 
 }
@@ -385,9 +843,68 @@ void display()
 
     bottom_grass();
 
-    if (game_over){
-         game_over_label();
+    if (playing) {
+        playSound();
+        playing = false;
     }
+
+
+        glLoadIdentity();
+
+
+
+    if (game_over ){
+         game_over_label();
+
+    }
+    else
+    {
+                       scoreText(); // for print "SCORE"
+
+    string score = toStr(escore);
+    if(score.size()==1)
+    {
+        if(score[0]=='0') digitZero();
+        else if(score[0]=='1') digitOne();
+        else if(score[0]=='2') digitTwo();
+        else if(score[0]=='3') digitThree();
+        else if(score[0]=='4') digitFour();
+        else if(score[0]=='5') digitFive();
+        else if(score[0]=='6') digitSix();
+        else if(score[0]=='7') digitSeven();
+        else if(score[0]=='8') digitEight();
+        else if(score[0]=='9') digitNine();
+
+    }
+    else
+    {
+        char first = score[0];
+        char second = score[1];
+        if(first=='1') digitOne();
+        else if(score[0]=='1') digitOne();
+        else if(score[0]=='2') digitTwo();
+        else if(score[0]=='3') digitThree();
+        else if(score[0]=='4') digitFour();
+        else if(score[0]=='5') digitFive();
+        else if(score[0]=='6') digitSix();
+        else if(score[0]=='7') digitSeven();
+        else if(score[0]=='8') digitEight();
+        else if(score[0]=='9') digitNine();
+
+        if(second=='0') digitSecondZero();
+        else if(second=='1') digitSecondOne();
+        else if(second=='2') digitSecondTwo();
+        else if(second=='3') digitSecondThree();
+        else if(second=='4') digitSecondFour();
+        else if(second=='5') digitSecondFive();
+        else if(second=='6') digitSecondSix();
+        else if(second=='7') digitSecondSeven();
+        else if(second=='8') digitSecondEight();
+        else if(second=='9') digitSecondNine();
+    }
+    }
+
+
 
     glFlush();
 
@@ -405,9 +922,7 @@ void SpecialInput(int key, int x, int y)
             break;
         case GLUT_KEY_DOWN:
              type = rand()%5;
-             if(speed<3000)
 
-            speed += 100;
             cout<<"speed"<<speed<<endl;
 
             break;
@@ -457,6 +972,9 @@ void new_object()
 void delete_row(int i){
 
     cout << "deleting I "<<i<<endl;
+
+
+    speed += 100 ;
     for (int ex = 0 ; ex< 21; ex++  )
             {
                 taken[ex][i] = false ;
@@ -501,7 +1019,7 @@ void print_matrix()
     {
         if (taken[j][0]){
             game_over = true;
-            final_score = score ;
+            final_score = escore ;
         }
     }
 
@@ -524,9 +1042,10 @@ void print_matrix()
         }
 }
 
-score+= cnt * 10 ;
+escore+= cnt *5 ;
 
-cout<<"Score : " <<score<<endl;
+
+cout<<"Score : " <<escore<<endl;
 }
 
 
@@ -744,6 +1263,25 @@ glutPostRedisplay();
 glutTimerFunc(speed, update , 0 );
 }
 
+void handleKeypress(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+        case 'm':
+                if(startMusic)
+                {
+                    startMusic = false;
+                    pauseSound();
+                }
+                else
+                {
+                    startMusic = true;
+                    playSound();
+                }
+                break;
+	}
+}
+
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
@@ -751,6 +1289,7 @@ int main(int argc, char *argv[])
     glutInitWindowSize(640,880);
     glutDisplayFunc(display);
     glutSpecialFunc(SpecialInput);
+    glutKeyboardFunc(handleKeypress);
     glutTimerFunc(speed, update , 0 );
     glutMainLoop();
 
