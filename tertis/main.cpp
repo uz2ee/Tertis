@@ -43,8 +43,7 @@ string toStr(int x)
 
 void cristmas(){
 
-
-    ///gluOrtho2D(-1,1,-1,1.5);
+///gluOrtho2D(-1,1,-1,1.5);
 //    ///THE UPPER STAR START
 //    glBegin(GL_TRIANGLES);
 //    glColor3ub(255,0,0);
@@ -1200,9 +1199,11 @@ void draw_quad(float x , float y , int type){
 
 
     glBegin(GL_QUADS);
-    if (type==99)
-            glColor3ub(20,192,46);
-            else             glColor3ub(157,192,46);
+    if (type==99 and !game_over)
+        glColor3ub(20,192,46);
+            else if (game_over and type==99)
+                glColor3ub(255,0,0);
+            else  glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
             glVertex2f(x1,y2);
             glVertex2f(x2,y2);
@@ -1737,9 +1738,9 @@ void print_matrix()
         for (int j = 0 ; j<21 ; j++ )
     {
         //if (taken[j][i])
-     //   cout<< taken[j][i]<< j<< i <<" _ "  ;
+        cout<< taken[j][i] ; //<< j<< i <<" _ "  ;
         }
-      //  cout<<endl;
+        cout<<endl;
 
     }
 
@@ -2013,7 +2014,6 @@ void reset(){
          type = 3;
          game_over = false ;
     }
-
 }
 }
 
