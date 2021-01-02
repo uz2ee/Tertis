@@ -1202,7 +1202,7 @@ void draw_quad(float x , float y , int type){
     if (type==99 and !game_over)
         glColor3ub(20,192,46);
             else if (game_over and type==99)
-                glColor3ub(255,0,0);
+                glColor3ub(100,0,0);
             else  glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
             glVertex2f(x1,y2);
