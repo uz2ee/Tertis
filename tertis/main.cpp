@@ -41,6 +41,71 @@ string toStr(int x)
 	return s;
 }
 
+void displaybuilding()
+{
+
+	glBegin(GL_POLYGON);
+	glColor3ub(236,216,163);
+        glVertex2f(-.9, .4);
+        glVertex2f(-.9,0);
+        glVertex2f(-.7, 0);
+        glVertex2f(-.7,.4);
+
+
+
+
+    glEnd();
+
+	glBegin(GL_POLYGON);
+	 glColor3ub(236,216,163);
+         glVertex2f(-.5,0);
+          glVertex2f(-.5, .8);
+          glVertex2f(-.55, .9);
+           glVertex2f(-.6,.8);
+        glVertex2f(-.6, 0);
+    glEnd();
+
+    	glBegin(GL_POLYGON);
+	 glColor3ub(236,216,163);
+         glVertex2f(-.4,0);
+          glVertex2f(-.2,0 );
+
+           glVertex2f(-.2,.75);
+           glVertex2f(-.27,.8);
+           glVertex2f(-.3,.85);
+           glVertex2f(-.33,.8);
+
+           glVertex2f(-.4,.75);
+
+
+        glVertex2f(-.4, 0);
+    glEnd();
+
+    	glBegin(GL_POLYGON);
+	  glColor3ub(236,216,163);
+	// glVertex2f(-.2, .5);
+         glVertex2f(-.1,0);
+          glVertex2f(-.0, 0);
+          glVertex2f(-.0, .6);
+           glVertex2f(-.1,.6);
+
+    glEnd();
+
+
+
+        	glBegin(GL_POLYGON);
+	  glColor3ub(236,216,163);
+	 glVertex2f(.02, 0);
+         glVertex2f(.2,0);
+          glVertex2f(.2, .2);
+          glVertex2f(0.02, .2);
+
+
+    glEnd();
+
+
+}
+
 void cristmas(){
 
 ///gluOrtho2D(-1,1,-1,1.5);
@@ -1202,7 +1267,7 @@ void draw_quad(float x , float y , int type){
     if (type==99 and !game_over)
         glColor3ub(20,192,46);
             else if (game_over and type==99)
-                glColor3ub(100,0,0);
+                glColor3ub(0,0,0);
             else  glColor3ub(157,192,46);
             glVertex2f(x1 , y1);
             glVertex2f(x1,y2);
@@ -1529,6 +1594,16 @@ glTranslatef(-0.26,-.6,0);
 
 
 }
+
+void startScreen(void)
+{
+    glClearColor(1.0f ,1.0f ,1.0f ,0.0f  );
+    glClear(GL_COLOR_BUFFER_BIT);
+    press_s_to_start();
+    glFlush();
+}
+
+
 void display()
 {
 
@@ -1537,8 +1612,33 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT);
 
 
+
     background_cloud();
+
     draw_tree();
+
+    glTranslatef(.3,-1,0);
+    glScalef(.5,.5,0);
+     displaybuilding();
+
+        glLoadIdentity();
+
+            glTranslatef(-.3,-1,0);
+    glScalef(.5,.5,0);
+     displaybuilding();
+
+        glLoadIdentity();
+
+            glTranslatef(-.5,-1,0);
+    glScalef(.5,.5,0);
+     displaybuilding();
+
+        glLoadIdentity();
+            glTranslatef(.5,-1,0);
+    glScalef(.5,.5,0);
+     displaybuilding();
+
+        glLoadIdentity();
 
   ///  cristmas(); by anik
 
@@ -2038,7 +2138,8 @@ void handleKeypress(unsigned char key, int x, int y)
              break;
 
         case 's':
-             reset();
+             glutDisplayFunc(display);
+             glutPostRedisplay();
              break;
 	}
 }
@@ -2048,7 +2149,7 @@ int main(int argc, char *argv[])
     glutInit(&argc, argv);
     glutCreateWindow("Tertis");
     glutInitWindowSize(640,880);
-    glutDisplayFunc(display);
+    glutDisplayFunc(startScreen);
     glutSpecialFunc(SpecialInput);
     glutKeyboardFunc(handleKeypress);
     glutTimerFunc(speed, update , 0 );
