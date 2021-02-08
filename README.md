@@ -10,3 +10,6 @@ Importance: Tetris is a game which is beneficial to brain. It helps to make part
 
 Limitations: The current version of this game bears several improvements which are now limitations. For example, in this version player can maximum play till the score isn't '99'. Scoring more than 99 is a right for the player but we keep it for next version. Another limitation is that the screen isn't visible if the tile matrix is more than 20*20. At the time of falling all the different shapes of tiles are in same color. This can be in different colors.  
 
+# Snap
+
+![133870795_729074621358150_536429186670606238_n](https://user-images.githubusercontent.com/41207912/107196313-b0a27f00-6a1c-11eb-8480-047e4dea5f5c.png)
